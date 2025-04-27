@@ -34,8 +34,8 @@ It provides tools to **monitor pet health**, **recommend treatments**, and **ass
 - **🌿 Natural Remedies Recommendation System**  
   After anomaly detection, suggests natural remedies adapted to the pet’s breed and condition.
 
-- **🩻 X-ray Image Analysis**  
-  AI-driven diagnostics to assist in interpreting X-ray images for internal issues.
+- **🩻 X-ray Cardiac Image Analysis**  
+  AI-driven diagnostics to assist in interpreting X-ray images for heart issues.
 
 ---
 
