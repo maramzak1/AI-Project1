@@ -26,7 +26,7 @@ It provides tools to **monitor pet health**, **recommend treatments**, and **ass
   Deep learning pretrained models to recognize dog and cat breeds with high precision.
 
 - **🧠 General Recommendation System (RAG-based)**  
-  Using **FAISS**, **LangChain**, **Gemma 3**, and **BGE-small v1.5** to provide customized daily care advice.
+  Using **FAISS**, **LangChain**, **Gemma 3** and **BGE-small v1.5** to provide customized daily care advice.
 
 - **⚠️ Anomaly Detection in Health**  
   Detects unusual behaviors or health indicators to warn users early.
