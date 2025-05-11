@@ -32,7 +32,15 @@ It provides tools to **monitor pet health**, **recommend treatments**, and **ass
   Detects unusual behaviors or health indicators to warn users early.
 
 - **🌿 Natural Remedies Recommendation System**  
-  After anomaly detection, suggests natural remedies adapted to the pet’s breed and condition.
+  A semantic search-based module that recommends natural remedies based on a user’s query.  
+  It uses:
+  - ✅ **SentenceTransformers** to embed both data and user queries.
+  - ⚡ **FAISS** to find the most relevant content efficiently.
+  - 🧠 **Ollama with LLaMA3** to generate personalized, context-aware answers.
+  - 🧪 **LIME (Local Interpretable Model-agnostic Explanations)** to highlight which words in the question influenced the system's understanding.
+  - 💾 **Diskcache** to optimize speed by avoiding recomputation.
+
+  > 📌 *Example:* Ask “des traitements naturels pour les douleurs articulaires du chien âgé ?” and receive curated advice with a visual explanation of key query terms.
 
 - **🩻 X-ray Cardiac Image Analysis**  
   AI-driven diagnostics to assist in interpreting X-ray images for heart issues.
@@ -41,10 +49,16 @@ It provides tools to **monitor pet health**, **recommend treatments**, and **ass
 
 ## 🛠️ Tech Stack
 
-- **Mobile Development**: Flutter / FlutterFlow
-- **Deep Learning**: TensorFlow / PyTorch
-- **Recommendation Systems**: FAISS + LangChain + Gemma 3 + BGE-small-v1.5
-- **Computer Vision**: CNNs / Transfer Learning for X-ray analysis
+| Category                | Technologies                                               |
+|------------------------|------------------------------------------------------------|
+| Mobile Development     | Flutter / FlutterFlow                                      |
+| Deep Learning          | TensorFlow / PyTorch                                       |
+| Recommendation Systems | FAISS, LangChain, Gemma 3, BGE-small-v1.5, LLaMA3 via Ollama|
+| Natural Language Tools | Sentence Transformers, LangDetect, LIME                    |
+| XAI & Visualization    | LIME, Matplotlib                                           |
+| Caching                | Diskcache                                                  |
 
 ---
+
+## 📂 Project Structure
 
