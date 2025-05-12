@@ -1,64 +1,67 @@
-# 🐾 Milo Vet Care
+# 🐾 Milo Vet Care  
 
-<p align="center">
-  <b>AI-powered veterinary care in your pocket. 🐶🐱</b><br>
-  <i>Breed classification, health monitoring, recommendations, and X-ray analysis — all in one app.</i>
-</p>
+<p align="center">  
+  <b>AI-powered veterinary care in your pocket. 🐶🐱</b><br>  
+  <i>Breed classification, health monitoring, recommendations, and X-ray analysis — all in one app.</i>  
+</p>  
 
-<p align="center">
-  <img alt="Built with Love" src="https://img.shields.io/badge/Built%20with-%E2%9D%A4-red">
-  <img alt="AI Project" src="https://img.shields.io/badge/Powered%20by-AI%20%26%20Deep%20Learning-blueviolet">
-  <img alt="Status" src="https://img.shields.io/badge/Status-Active-brightgreen">
-</p>
+<p align="center">  
+  <img alt="Built with Love" src="https://img.shields.io/badge/Built%20with-%E2%9D%A4-red">  
+  <img alt="AI Project" src="https://img.shields.io/badge/Powered%20by-AI%20%26%20Deep%20Learning-blueviolet">  
+  <img alt="Status" src="https://img.shields.io/badge/Status-Active-brightgreen">  
+</p>  
 
----
+---  
 
-## 📖 Overview
+## 📖 Overview  
+Milo Vet Care is a **mobile application** that leverages advanced AI to deliver **personalized pet care**. By combining breed classification, health monitoring, and explainable recommendations, it helps users make informed decisions for their pets’ well-being.  
 
-Milo Vet Care is a **mobile application** dedicated to improving the lives of animals by blending advanced **AI models** into a simple, user-friendly interface.  
-It provides tools to **monitor pet health**, **recommend treatments**, and **assist with early detection** of health problems.
+---  
 
----
+## ✨ Key Features  
 
-## ✨ Key Features
+### 🐶 **Breed Classification**  
+Pretrained deep learning models for accurate dog/cat breed identification.  
 
-- **🐶 Breed Classification**  
-  Deep learning pretrained models to recognize dog and cat breeds with high precision.
+### 🧠 **General Recommendation System (RAG-based)**  
+A **Retrieval-Augmented Generation (RAG)** pipeline that provides **evidence-backed health advice** tailored to your pet’s breed.  
+- **🔍 Retrieval**: Uses **BGE-small-en-v1.5** embeddings (normalized to unit length) with **cosine similarity** for precise document matching *(1.0 = identical, 0.0 = unrelated)*.  
+- **📜 Context Handling**: Processes long documents (128K tokens) with **Gemma-3-4B-IT**, optimized for efficiency on consumer hardware.  
+- **🎛️ Generation Control**: Balances creativity and reliability via:  
+  - `temperature=0.7` *(deterministic but adaptable)*  
+  - `top_p=0.85` *(filters low-probability nonsense)*  
+- **📊 Confidence Scoring**: Ranks sources by relevance (e.g., *90% for peer-reviewed papers vs. 78% for guides*).  
 
-- **🧠 General Recommendation System (RAG-based)**  
-  Using **FAISS**, **LangChain**, **Gemma 3** and **BGE-small v1.5** to provide customized daily care advice.
+> **Example**: Search for *“Golden Retriever hip dysplasia prevention”* to retrieve FDA reports, AKC guides, and research papers—then receive summarized advice with source ratings.  
 
-- **⚠️ Anomaly Detection in Health**  
-  Detects unusual behaviors or health indicators to warn users early.
+### ⚠️ **Anomaly Detection**  
+Flags unusual health patterns (e.g., lethargy, appetite changes) for early intervention.  
 
-- **🌿 Natural Remedies Recommendation System**  
-  A semantic search-based module that recommends natural remedies based on a user’s query.  
-  It uses:
-  - ✅ **SentenceTransformers** to embed both data and user queries.
-  - ⚡ **FAISS** to find the most relevant content efficiently.
-  - 🧠 **Ollama with LLaMA3** to generate personalized, context-aware answers.
-  - 🧪 **LIME (Local Interpretable Model-agnostic Explanations)** to highlight which words in the question influenced the system's understanding.
-  - 💾 **Diskcache** to optimize speed by avoiding recomputation.
+### 🌿 **Natural Remedies Recommendation**  
+Semantic search powered by:  
+- **✅ SentenceTransformers** for multilingual query understanding.  
+- **⚡ FAISS** for fast similarity search.  
+- **🧠 Ollama + LLaMA3** for context-aware answers.  
+- **🧪 LIME** to explain which query terms influenced results *(e.g., highlights “joint pain” in a French query)*.  
+- **💾 Diskcache** to avoid redundant computations.  
 
-  > 📌 *Example:* Ask “des traitements naturels pour les douleurs articulaires du chien âgé ?” and receive curated advice with a visual explanation of key query terms.
+### 🩻 **X-ray Cardiac Analysis**  
+AI-driven diagnostics for detecting heart conditions from X-rays.  
 
-- **🩻 X-ray Cardiac Image Analysis**  
-  AI-driven diagnostics to assist in interpreting X-ray images for heart issues.
+---  
 
----
+## 🛠️ Tech Stack  
 
-## 🛠️ Tech Stack
+| Category                | Technologies                                                                 |  
+|-------------------------|------------------------------------------------------------------------------|  
+| **Mobile**              | Flutter / FlutterFlow                                                        |  
+| **Deep Learning**       | TensorFlow / PyTorch                                                         |  
+| **RAG Pipeline**        | FAISS, LangChain, BGE-small-en-v1.5, Gemma-3-4B-IT                          |  
+| **NLP Tools**           | Sentence Transformers, LangDetect, LIME                                     |  
+| **Caching**             | Diskcache                                                                    |  
 
-| Category                | Technologies                                               |
-|------------------------|------------------------------------------------------------|
-| Mobile Development     | Flutter / FlutterFlow                                      |
-| Deep Learning          | TensorFlow / PyTorch                                       |
-| Recommendation Systems | FAISS, LangChain, Gemma 3, BGE-small-v1.5, LLaMA3 via Ollama|
-| Natural Language Tools | Sentence Transformers, LangDetect, LIME                    |
-| XAI & Visualization    | LIME, Matplotlib                                           |
-| Caching                | Diskcache                                                  |
+---  
 
----
+## 📂 Project Structure  
 
-## 📂 Project Structure
 
