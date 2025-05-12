@@ -100,7 +100,7 @@ def get_llm():
         try:
             _llm = pipeline(
                 "text-generation",
-                model="google/gemma-2b-it",# Your token
+                model="google/gemma-2b-it",
                 device_map="auto" if torch.cuda.is_available() else "cpu",
                 torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
                 max_new_tokens=128,  # Reduced for stability
