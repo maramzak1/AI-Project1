@@ -100,7 +100,7 @@ def get_llm():
         try:
             _llm = pipeline(
                 "text-generation",
-                model="google/gemma-2b-it",
+                model="google/gemma-3-4b-it",
                 device_map="auto" if torch.cuda.is_available() else "cpu",
                 torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
                 max_new_tokens=128,  # Reduced for stability
@@ -265,7 +265,7 @@ def build_vectorstore(docs):
     print("\n🔧 Building vector store...")
     try:
         embeddings = HuggingFaceEmbeddings(
-            model_name="all-MiniLM-L6-v2",
+            model_name="BAI/bge-small-en-v1.5",
             model_kwargs={"device": "cpu"},
             encode_kwargs={
                 "normalize_embeddings": True,
@@ -312,7 +312,7 @@ def load_vectorstore():
         print(f"✅ Verified versions: pydantic=={pydantic.__version__}, langchain=={langchain.__version__}")
         
         embeddings = HuggingFaceEmbeddings(
-            model_name="all-MiniLM-L6-v2",
+            model_name="BAI/bge-small-en-v1.5",
             model_kwargs={"device": "cpu"},
             encode_kwargs={"normalize_embeddings": True}
         )
