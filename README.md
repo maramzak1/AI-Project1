@@ -87,17 +87,7 @@ Our **Retrieval-Augmented Generation** pipeline ensures reliable advice:
 ---
 
 ## 📂 Project Structure  
-```
-milovet-care/  
-├── app/                  # Flutter mobile application  
-├── backend/              # AI services  
-│   ├── rag/              # RAG pipeline  
-│   │   ├── retrieval.py  # FAISS + BGE search  
-│   │   └── generation/   # Gemma-3 with XAI  
-│   └── vision/           # Breed/X-ray models  
-├── data/                 # Structured/Unstructured sources  
-└── docs/                 # Confidence score methodology  
-```
+
 
 ---
 
