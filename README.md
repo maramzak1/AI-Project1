@@ -35,7 +35,7 @@ Mobile app featuring:
 ### **2. NLP & Diagnostic Support**  
 - **Symptom Checker**: Llama3 + MiniLM-L6-v2 embeddings  
 - **RAG Systems**:  
-  - Breed-specific advice (Gemma-3-4B + FAISS)  
+  - Breed-specific advice (Gemma-3-4B + bge-small v1.5 + FAISS)  
   - Treatment plans (FDA/clinical guidelines retrieval)  
 
 ### **3. Explainable AI (XAI)**  
@@ -48,7 +48,7 @@ Mobile app featuring:
 ## 🛠️ Tech Stack  
 
 ### **Frontend**  
-`Flutter` | `Dart` | XAI Visualization | PWA Support  
+`FlutterFlow` | `Dart` | XAI Visualization 
 
 ### **Backend**  
 | Component | Technology |  
@@ -57,11 +57,7 @@ Mobile app featuring:
 | **NLP Pipelines** | Hugging Face Transformers, LangChain |  
 | **Vector Database** | FAISS, Sentence-Transformers |  
 | **API** | FastAPI, Swagger UI |  
-
-### **DevOps & ML Tools**  
-- **MLOps**: MLflow, DVC  
-- **Data Processing**: OpenCV, Albumentations  
-- **Deployment**: Docker, Kubernetes  
+ 
 
 ---
 
