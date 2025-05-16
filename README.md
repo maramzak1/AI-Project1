@@ -1,117 +1,141 @@
-# 🐾 Milo Vet Care  
+# 🐾 Milo Vet Care - AI-Powered Veterinary Assistance
 
-<p align="center">  
-  <b>AI-powered veterinary care in your pocket. 🐶🐱</b><br>  
-  <i>Breed classification, health monitoring, and evidence-based recommendations — all in one app.</i>  
-</p>  
+<p align="center">
+  <b>Bridging the veterinary care gap in rural Tunisia with AI</b><br>
+  <i>Neuronix Team Project | Partnered with Ariana Veterinary Clinic</i>
+</p>
 
-<p align="center">  
-  <img alt="Built with Love" src="https://img.shields.io/badge/Built%20with-%E2%9D%A4-red">  
-  <img alt="AI Project" src="https://img.shields.io/badge/Powered%20by-AI%20%26%20Deep%20Learning-blueviolet">  
-  <img alt="Status" src="https://img.shields.io/badge/Status-Active-brightgreen">  
-  <img alt="Explainable AI" src="https://img.shields.io/badge/Explainability-XAI%20Integrated-success">  
-</p>  
-
----
-
-## 📖 Overview  
-Milo Vet Care combines **cutting-edge AI** with veterinary expertise to deliver:  
-- **Breed-specific health insights**  
-- **Evidence-backed recommendations** with transparency scores  
-- **Early anomaly detection**  
-- **Explainable AI** (XAI) at every decision point  
+<p align="center">
+  <img alt="AI Accuracy" src="https://img.shields.io/badge/Disease_Detection-97%25_Accuracy-brightgreen">
+  <img alt="SDGs" src="https://img.shields.io/badge/SDGs-3%2C9%2C15%2C17-blue">
+  <img alt="XAI" src="https://img.shields.io/badge/Explainability-Grad--CAM%2C_LIME-success">
+  <img alt="Data" src="https://img.shields.io/badge/Datasets-7.8K_Images-orange">
+</p>
 
 ---
 
-## ✨ Key Features  
+## 📌 Project Overview
+**Problem:** 40% vet coverage in rural Tunisia, with 70% of pet owners delaying care until emergencies.
 
-### 🐶 **Breed Classification**  
-- Pretrained vision models identify 200+ dog/cat breeds  
-- Output triggers breed-specific health recommendations  
-
-### 🧠 **Trustworthy Recommendation System (RAG)**  
-Our **Retrieval-Augmented Generation** pipeline ensures reliable advice:  
-
-**1. Smart Retrieval**  
-- Embeddings: **BGE-small-en-v1.5** (normalized for optimal cosine similarity)  
-- Search: FAISS-indexed documents ranked by:  
-  - **Relevance Score** (0.0-1.0 via cosine similarity)  
-  - **Confidence Tier** (Peer-reviewed > Guidelines > Forums)  
-  *Example: "Golden Retriever hip dysplasia" finds:*  
-  ```plaintext
-  [0.92] FDA treatment guidelines (2024)  
-  [0.85] AKC breed health manual  
-  [0.76] Veterinary forum discussion  
-  ```
-
-**2. Transparent Generation**  
-- LLM: **Gemma-3-4B-IT** (128K context)  
-- Controlled output:  
-  - `temperature=0.7` - Balances accuracy/adaptability  
-  - `top_p=0.85` - Filters low-quality suggestions  
-- **XAI Features**:  
-  - Source highlighting ("This advice comes from FDA Section 3.2")  
-  - Breed-context notes ("Golden Retrievers score 8.7/10 risk for joint issues")  
-
-### ⚠️ **Anomaly Detection**  
-- Tracks 15+ health indicators  
-- Alerts when patterns deviate from breed norms  
-
-### 🌿 **Natural Remedies Advisor**  
-- Multilingual semantic search (140+ languages)  
-- Powered by:  
-  - **LLaMA-3** via Ollama  
-  - **LIME explanations** (shows influential query terms)  
-  ```plaintext
-  Query: "Natural treatments for senior dog arthritis"  
-  Key Terms: ["senior" (weight: 0.62), "arthritis" (0.81)]  
-  ```  
-
-### 🩻 **X-ray Analysis**  
-- Detects 12+ cardiac conditions from radiographs  
-- Grad-CAM heatmaps highlight areas of concern  
+**Solution:** Mobile AI application providing:
+- Breed classification (37 species)
+- Disease detection (95% accuracy on X-rays)
+- Symptom-to-diagnosis assistance
+- Treatment recommendations via RAG
+- X-ray cardiac analysis (87% accuracy)
 
 ---
 
-## 🛠️ Tech Stack  
+## ✨ Core Modules
 
-| Category              | Technologies                          | Key Purpose                     |  
-|-----------------------|---------------------------------------|---------------------------------|  
-| **Mobile**            | Flutter                               | Cross-platform app development  |  
-| **Embeddings**        | BGE-small-en-v1.5                    | Semantic search foundation      |  
-| **Vector DB**         | FAISS                                 | Lightning-fast retrieval        |  
-| **LLM**               | Gemma-3-4B-IT                         | Evidence synthesis              |  
-| **XAI**               | LIME, Confidence Scoring             | Transparent decision-making     |  
-| **Caching**           | Diskcache                             | Performance optimization        |  
+### 1. Animal Species Classification
+- **Models:** Custom CNN (71% accuracy), ResNet50 (89.9%), EfficientNet (74%)
+- **Pipeline:**
+  ```python
+  Conv → BatchNorm → ReLU → MaxPooling → [512 FC + Dropout] → [256 FC] → Softmax
+Optimizer: Adam with LR scheduler
 
----
+Hardware: GPU accelerated
 
-## 📂 Project Structure  
+2. Symptom-to-Diagnosis Assistant
+Tech Stack:
 
+Embeddings: MiniLM-L6-v2 (lightweight, efficient)
 
----
+Retrieval: FAISS similarity search
 
-## 💡 Why Choose Milo?  
-1. **Evidence-Based** - Every recommendation cites trusted sources  
-2. **Explainable** - See why suggestions are made (confidence scores, XAI)  
-3. **Breed-Aware** - Tailored to genetic health predispositions  
-4. **Proactive** - Catches issues before they become emergencies  
+LLM: Llama3 via Ollama (local deployment)
 
-> *"The confidence scores help me trust the AI's advice - I know when it's citing a vet study vs. general advice."*  
-> — Beta Tester (Veterinary Technician)  
+Sample Output:
 
----
+plaintext
+Symptoms: Vomiting + Diarrhea → Probable Diagnosis: Parasitic infection
+Urgency Level: High (risk of dehydration)
+3. Breed-Specific Recommendations (RAG System)
+Data: 209 breeds with health profiles
 
-<p align="center">  
-  <b>🚀 Ready to transform pet care?</b><br>  
-  <i>Clone the repo or contact us for collaborations!</i>  
-</p>  
-```
+Pipeline:
 
-Key improvements:
-1. **XAI Integration** - Confidence scores and explanations throughout the workflow
-2. **Technical Clarity** - Specifics about cosine similarity, normalization, and hyperparameters
-3. **User-Centric** - Real-world examples and testimonials
-4. **Visual Structure** - Clean formatting with badges and tables
-5. **Complete Picture** - From tech stack to project structure
+PDFs/HTML → RecursiveCharacterTextSplitter → bge-small-en-v1.5 → FAISS → Gemma-3-4B-IT
+Confidence Scoring:
 
+plaintext
+Golden Retriever Results:
+[90%] AKC Breeding Guidelines 
+[81%] Veterinary Dermatology Study
+4. Animal Disease Detection
+Performance:
+
+Dog skin diseases: 97% test accuracy (7 classes, 4.6K images)
+
+Cat skin diseases: 95% accuracy (8 classes, 3.2K images)
+
+Model: ResNet50 → 256 FC → LogSoftmax
+
+Loss: NLLLoss
+
+Optimizer: Adam (LR=0.001)
+
+5. X-Ray Heart Disease Detection
+Datasets:
+
+Veterinary partnership X-rays
+
+Mendeley cardiac dataset
+
+Best Model: EfficientNet_B0 (87% val accuracy)
+
+Output Example:
+
+plaintext
+Grad-CAM Detection: Cardiomegaly → Recommendation: 
+"Start ACE inhibitors. Refer for echocardiography."
+🛠️ Technical Implementation
+Key Architectural Choices
+Component	Selection	Rationale
+Embeddings	MiniLM-L6-v2 vs BGE-small	Balance of speed (91MB) & accuracy
+LLM	Llama3/Gemma-3	Local deployability & multilingual support
+Retrieval	FAISS	Fast similarity search for embeddings
+XAI	Grad-CAM + LIME	Model interpretability for vet trust
+Performance Metrics
+Species Classification: EfficientNet achieved 74% with Grad-CAM explainability
+
+Disease Detection: ResNet50 reached 97% accuracy (dogs)
+
+Cardiac Analysis: EfficientNet_B0 - 87% validation accuracy
+
+🌍 Impact on SDGs
+SDG 3: Improved animal health → reduced zoonotic diseases
+
+SDG 9: Tech innovation in veterinary care
+
+SDG 15: Better domestic animal welfare
+
+SDG 17: Partnership with Ariana Veterinary Clinic
+
+📂 Repository Structure
+milovetcare/
+├── /models/               # Pretrained model weights
+│   ├── species_classifier/
+│   ├── disease_detection/
+│   └── cardiac_analysis/
+├── /data/                 # Sample datasets
+├── /src/                  # Core application code
+│   ├── rag_pipeline.py    # Recommendation system
+│   ├── grad_cam.py        # XAI visualization
+│   └── mobile_app/        # Flutter implementation
+└── /partnerships/         # Veterinary collaboration docs
+🚀 Getting Started
+Prerequisites:
+
+bash
+Python 3.8+, Ollama, GPU-enabled environment
+Install dependencies:
+
+bash
+pip install -r requirements.txt
+Run demo:
+
+bash
+python src/demo_pipeline.py --image_path="sample_xray.jpg"
+<p align="center"> <b>Developed with ❤️ by Team Neuronix</b><br> Farah | Souleima | Emna | Maram  | Dorra | Amir </p> ```
