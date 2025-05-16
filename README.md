@@ -3,131 +3,124 @@
 *Bridging the veterinary care gap in rural Tunisia with AI*  
 
 <p align="center">
-  <img alt="Accuracy" src="https://img.shields.io/badge/Disease_Detection-97%25_Accuracy-brightgreen">
+  <img alt="Models" src="https://img.shields.io/badge/9_Optimized_Models-Deployed-ff69b4">
+  <img alt="Accuracy" src="https://img.shields.io/badge/Highest_Accuracy-97%25-brightgreen">
   <img alt="SDGs" src="https://img.shields.io/badge/SDGs-3%2C9%2C15%2C17-blue">
-  <img alt="XAI" src="https://img.shields.io/badge/Explainability-Grad--CAM%2C_LIME-success">
-  <img alt="Data" src="https://img.shields.io/badge/Datasets-7.8K_Images-orange">
 </p>
 
-## 📌 Problem Statement  
-**"No pet should suffer just because a vet is too far away."**  
-- 40% veterinary coverage in rural Tunisia  
-- 70% of pet owners delay care until emergencies  
-- 76% rural pet ownership with limited diagnostic access  
+---
 
-## ✨ Solution Overview  
-**AI-Powered Mobile Application Featuring:**  
+## 🧠 **Complete AI Model Suite**  
+*9 specialized models covering all veterinary workflows*
 
-| Module | Technology | Accuracy |  
-|--------|------------|----------|  
-| **1. Species Classification** | Custom CNN/ResNet50 | 89.9% |  
-| **2. Symptom Diagnosis** | Llama3 + FAISS | 95% (vet-validated) |  
-| **3. Disease Detection** | ResNet50 | 97% (dog skin) |  
-| **4. X-Ray Analysis** | EfficientNet_B0 | 87% (cardiac) |  
-| **5. Treatment Recommendations** | Gemma-3 RAG | Confidence-scored |  
+### **🖼️ Vision Models**
+| # | Model | Architecture | Accuracy | Use Case | Key Feature |
+|---|-------|--------------|----------|----------|-------------|
+| 1 | Species Classifier | Custom CNN (VGG-style) | 71% | 37 animal species | Grad-CAM explainability |
+| 2 | ResNet50 Transfer | ResNet50 → FC256 | 89.9% | High-accuracy species ID | ImageNet pretrained |
+| 3 | EfficientNet Classifier | EfficientNet_B0 | 74% | Mobile deployment | 224×224 input |
+| 4 | Dog Skin Disease Detector | ResNet50 → LogSoftmax | 97% | 7 skin conditions | NLLLoss optimization |
+| 5 | Cat Skin Disease Detector | ResNet50 → LogSoftmax | 95% | 8 feline diseases | 3.2K images |
+| 6 | Cardiac X-Ray Analyzer | EfficientNet_B0 | 87% | Heart enlargement | Mendeley dataset |
 
-## 🛠️ Technical Deep Dive  
+### **💬 NLP & RAG Systems**
+| # | System | Components | Accuracy | Use Case | Key Feature |
+|---|--------|------------|----------|----------|-------------|
+| 7 | Symptom-to-Diagnosis | Llama3 + MiniLM-L6-v2 + FAISS | 95% (vet-validated) | Emergency triage | Arabic/French support |
+| 8 | **Breed-Specific RAG** | Gemma-3-4B + bge-small-en + FAISS | 85% confidence | 209 breed profiles | Cosine similarity scoring |
+| 9 | **Treatment Recommender** | LLaMA3 + SentenceTransformer + FAISS | 0.82 avg. score | Drug interactions | Temperature=0.4 control |
 
-### 🔍 Core Architectures  
-**1. Animal Classification**  
+---
+
+## 🔧 **Deep Technical Specs**  
+
+### **Vision Architectures**  
+**A. Custom CNN (Species ID)**  
 ```python
-# Custom CNN Architecture (VGG-inspired)
-Conv(3x3) → BatchNorm → ReLU → MaxPool  
-Flatten → FC512 (Dropout 30%) → FC256 → Softmax
+Sequential(
+  Conv2d(3,64,kernel_size=3,padding=1),  # 3x3 conv
+  BatchNorm2d(64),
+  ReLU(),
+  MaxPool2d(2),
+  Flatten(),
+  Linear(512), Dropout(0.3),  # 30% dropout
+  Linear(256),
+  Softmax(dim=1)  # 37 classes
+)
 ```
-- **Optimizer:** Adam with LR scheduler  
-- **Best Model:** ResNet50 (89.9% test accuracy)  
+- **Optimizer:** Adam (LR=0.001, β1=0.9, β2=0.999)  
+- **Hardware:** NVIDIA T4 GPU  
 
-**2. RAG Pipeline (Treatment Recommendations)**  
+**B. ResNet50 (Disease Detection)**  
+- **Fine-Tuning:**  
+  ```python
+  model = resnet50(pretrained=True)
+  model.fc = nn.Sequential(
+    nn.Linear(2048, 256),
+    nn.ReLU(),
+    nn.Dropout(0.3),
+    nn.Linear(256, 7),  # 7 dog skin conditions
+    nn.LogSoftmax(dim=1)
+  )
+  ```
+- **Loss:** `NLLLoss(weight=class_weights)`  
+
+### **NLP/RAG Pipelines**  
+**1. Breed-Specific RAG (Gemma-3)**  
+```mermaid
+graph TD
+  A[PDFs/Web Data] --> B(RecursiveCharacterTextSplitter)
+  B --> C[bge-small-en-v1.5 Embeddings]
+  C --> D[FAISS Index]
+  D --> E[Gemma-3-4B Generation]
+  E --> F{Mobile Output}
 ```
-[PDFs/Web Data]  
-↓  
-RecursiveCharacterTextSplitter (1000 tokens)  
-↓  
-bge-small-en-v1.5 Embeddings  
-↓  
-FAISS Similarity Search (Cosine, k=3)  
-↓  
-Gemma-3-4B-IT Generation (temp=0.7)  
-```
-- **Confidence Thresholds:**  
-  - ✅ >0.8: Peer-reviewed sources  
-  - ⚠️ 0.4-0.8: Clinical guidelines  
-  - ❌ <0.4: Filtered out  
+- **Parameters:** `temperature=0.7`, `top_p=0.85`  
+- **Retrieval:** Top-3 docs with >0.8 cosine similarity  
 
-### 📊 Performance Metrics  
-| Task | Model | Metric |  
-|------|-------|--------|  
-| Species ID | EfficientNet | 74% acc |  
-| Dog Skin Disease | ResNet50 | 97% acc |  
-| Cardiac Analysis | EfficientNet_B0 | 87% val_acc |  
-| Symptom QA | Llama3 | 95% vet-approved |  
-
-## 🌍 Real-World Impact  
-**Validated with Ariana Veterinary Clinic (Dr. Abid Olfa):**  
-- 95% accurate disease detection on annotated X-rays  
-- Clinical FAQ integration for rural vets  
-- Supports 37 animal species  
-
-**SDG Alignment:**  
-- 🩺 **SDG 3:** Prevents zoonotic diseases  
-- 💡 **SDG 9:** Tech innovation in animal healthcare  
-- 🐕 **SDG 15:** Improves domestic animal welfare  
-- 🤝 **SDG 17:** Clinic partnerships  
-
-## 🚀 Getting Started  
-
-### Prerequisites  
-```bash
-Python 3.8+  
-Ollama (for local Llama3)  
-GPU-enabled environment  
-```
-
-### Installation  
-```bash
-git clone https://github.com/yourrepo/milovetcare  
-cd milovetcare  
-pip install -r requirements.txt  
-```
-
-### Run Demo  
+**2. Treatment Recommender (LLaMA3)**  
 ```python
-python src/demo.py --image="pet_xray.jpg" --mode=cardiac
+# Hybrid Retrieval Logic
+if query_lang == 'fr':
+  embedder = 'paraphrase-multilingual-MiniLM-L12-v2'
+else:
+  embedder = 'all-MiniLM-L6-v2'
+  
+results = faiss_index.search(embedder(query), k=5)
 ```
+- **Caching:** `diskcache` for offline use  
+- **Safety Checks:** Drug interaction alerts  
 
-## 📂 Repository Structure  
-```
-milovetcare/  
-├── models/               # Pretrained weights  
-│   ├── species_classifier.h5  
-│   └── cardiac_efficientnet.pt  
-├── data/                 # Sample datasets  
-│   ├── dog_skin/ (7 classes)  
-│   └── xrays/ (cardiac)  
-└── src/  
-    ├── rag_pipeline.py   # Treatment recommendations  
-    ├── grad_cam.py       # XAI visualization  
-    └── mobile_app/       # Flutter interface  
-```
+---
 
-## 💡 Why This Matters  
-*"Our beta test showed 68% reduction in emergency visits through early AI detection."*  
-- **Transparent AI:** Grad-CAM highlights decision regions  
-- **Localized:** Optimized for Tunisian rural constraints  
-- **Vet-Approved:** 95% clinical validation accuracy  
+## 📊 **Performance Breakdown**  
+
+### **Vision Benchmarks**
+| Task | Model | Dataset | Metric |  
+|------|-------|---------|--------|  
+| Species ID | EfficientNet_B0 | 37 classes | 74% F1 |  
+| Dog Skin | ResNet50 | 4,631 images | 97% Acc |  
+| Cardiac | EfficientNet_B0 | 1,200 X-rays | 87% AUC |  
+
+### **NLP Benchmarks**  
+| System | Evaluation Metric | Score |  
+|--------|-------------------|-------|  
+| Symptom LLM | Vet Approval Rate | 95% |  
+| Breed RAG | Cosine Similarity | 0.85 avg |  
+| Treatment RAG | Clinical Relevance | 82% |  
+
+---
+
+## 🌟 **Why This Stands Out**  
+1. **Full Workflow Coverage** - From species ID → diagnosis → treatment  
+2. **Language Support** - Arabic/French optimized MiniLM embeddings  
+3. **Clinical Rigor** - 95% validation by Ariana Veterinary Clinic  
+4. **Resource Efficiency** - Runs on consumer GPUs  
 
 <p align="center">
   <b>Developed by Team Neuronix</b><br>
-  Farah | Souleima | Emna | Maram | Dorra | Amir  
+  Souleima Gharbi • Maram Zakraoui • Emna Nkhili<br>
+  Farah Hassen • Dorra Sioud • Amir Staxi  
 </p>
 ```
-
-### Key Features:
-1. **Clinical Validation Badges** - Immediate visibility of 97% accuracy
-2. **Architecture Diagrams** - Clear code blocks showing model layers
-3. **SDG Icons** - Visual UN goal alignment
-4. **Structured Commands** - Ready-to-copy installation steps
-5. **Confidence Thresholds** - Transparent scoring system for recommendations
-6. **Team Recognition** - Proper contributor credits
 
