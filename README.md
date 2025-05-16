@@ -110,6 +110,18 @@ results = faiss_index.search(embedder(query), k=5)
 | Treatment RAG | Clinical Relevance | 82% |  
 
 ---
+## 🌍 Real-World Impact  
+**Validated with Ariana Veterinary Clinic (Dr. Abid Olfa):**  
+- 95% accurate disease detection on annotated X-rays  
+- Clinical FAQ integration for rural vets  
+- Supports 37 animal species  
+
+**SDG Alignment:**  
+- 🩺 **SDG 3:** Prevents zoonotic diseases  
+- 💡 **SDG 9:** Tech innovation in animal healthcare  
+- 🐕 **SDG 15:** Improves domestic animal welfare  
+- 🤝 **SDG 17:** Clinic partnerships  
+
 
 ## 🌟 **Why This Stands Out**  
 1. **Full Workflow Coverage** - From species ID → diagnosis → treatment  
