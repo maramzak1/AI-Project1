@@ -98,7 +98,7 @@ milovetcare/
 Python 3.10+  
 PyTorch 2.0+  
 Flutter 3.13+  
-Ollama (for local inference of Llama3)  
+Ollama (for local inference of Llama3 and Gemma 3)  
 NVIDIA GPU (CUDA 12.1 recommended)  
 ```
 
